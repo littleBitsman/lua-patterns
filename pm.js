@@ -767,10 +767,15 @@ function PatternsPrint(input) {
 	const output = PatternsParse(tokens)
 	basediv = document.getElementById("result")
 	CleanBaseDiv()
-	PatternsShow(output, basediv)
 	patternCheck = function(s) {
 		const str = (new String(s)).replace('"', '\\"')
 		const pat = (new String(input)).replace('"', '\\"')
 		return fengari.load(`local str = "${str}"; return {str:match("${pat}")}`, 'PatternTest')()
 	}
+	try {
+		patternCheck('')
+	} catch {
+		return CreateDiv("error", basediv, "!", "Error.", "Uncaught pattern error: check for unescaped characters")
+	}
+	PatternsShow(output, basediv)
 }
