@@ -771,6 +771,6 @@ function PatternsPrint(input) {
 	patternCheck = function(s) {
 		const str = (new String(s)).replace('"', '\\"')
 		const pat = (new String(input)).replace('"', '\\"')
-		return fengari.load(`local str = "${str}"; return str:match("${pat}")`, 'PatternTest')()
+		return fengari.load(`local str = "${str}"; return {str:match("${pat}")}`, 'PatternTest')()
 	}
 }
